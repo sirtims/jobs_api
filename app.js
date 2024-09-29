@@ -12,12 +12,6 @@ const cors = require('cors')
 const xssClean = require('xss-clean')
 const rateLimiter = require('express-rate-limit')
 
-// using dompurify and jsdom instead  of xss-clean which is outdated
-const createDOMPurify = require('dompurify')
-const { JSDOM } = require('jsdom')
-const window = new JSDOM('').window
-const DOMPurify = createDOMPurify(window)
-const clean = DOMPurify.sanitize(dirtyInput);
 
 
 const app = express()
