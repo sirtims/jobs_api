@@ -24,7 +24,6 @@ app.use(rateLimiter({
 app.use(express.json())
 app.use(helmet())
 app.use(cors())
-app.use(clean())
 app.use(xssClean())
 app.get('/', (req, res) => {
    res.send('this is the home page')
