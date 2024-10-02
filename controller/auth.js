@@ -18,12 +18,12 @@ const login = async (req, res) => {
    // check if user with email exist
    if (!user) {
       console.log('error from here');
-      throw new UnAuthenticatedError('Invalid cridentials')
+      throw new UnAuthenticatedError(`Invalid cridentials: No User with email ${email}`)
    }
    //   check password
    const isPasswordMatched = await user.checkPassword(password)
    if (!isPasswordMatched) {
-      throw new UnAuthenticatedError('Invalid cridentials')
+      throw new UnAuthenticatedError('Invalid cridentials: incorrect password')
    }
    const token = user.createJWT()
    res.status(StatusCodes.OK).json({ user: { name: user.name }, token })
