@@ -28,7 +28,7 @@ const JobSchema = mongoose.Schema({
    },
    location: {
       type: String,
-      required: [true, 'please provide position'],
+      required: [true, 'please provide location'],
       minLength: [3, "must not be less than 3 characters"]
    }
 }, { timestamps: true })
