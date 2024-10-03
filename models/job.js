@@ -25,6 +25,11 @@ const JobSchema = mongoose.Schema({
       type: String,
       enum: ['full-time', 'per-time', 'remote', 'intern'],
       default: 'full-time'
+   },
+   location: {
+      type: String,
+      required: [true, 'please provide position'],
+      minLength: [3, "must not be less than 3 characters"]
    }
 }, { timestamps: true })
 
