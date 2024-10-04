@@ -41,10 +41,10 @@ const getJob = async (req, res) => {
 }
 const createJob = async (req, res) => {
    const { userId } = req.user
-   const { company, position } = req.body
+   const { company, position, location } = req.body
    req.body.createdBy = userId
-   if (!company || !position) {
-      throw new BadRequestError('company and position fields must not be empty')
+   if (!company || !position || !location) {
+      throw new BadRequestError('company, location, position fields must not be empty')
    }
    const job = await Job.create({ ...req.body })
    res.status(StatusCodes.CREATED).json({ job })
