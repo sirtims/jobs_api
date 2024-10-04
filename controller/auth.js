@@ -28,7 +28,29 @@ const login = async (req, res) => {
    const token = user.createJWT()
    res.status(StatusCodes.OK).json({ user: { name: user.name }, token })
 }
+
+const getUser = async (req, res) => {
+   const { userId } = req.user
+   const user = await User.findOne({ _id: userId }).select('name email number location')
+   res.status(200).json({ user })
+}
+
+
+const updateUserInfo = async (req, res) => {
+   const { userId } = req.user
+   const { name, location, number } = req.body
+   if (!name || !location || !number) {
+      throw new BadRequestError('name, location and number field must be filled')
+   }
+   const user = await User.findOneAndUpdate({ _id: userId }, req.body, { new: true, runValidators: true })
+   if (!user) {
+      throw new NotFoundError(`No job with id:${userId}`)
+   }
+   res.status(200).json({ user })
+}
 module.exports = {
    register,
-   login
+   login,
+   getUser,
+   updateUserInfo
 }

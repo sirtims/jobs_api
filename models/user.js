@@ -22,6 +22,19 @@ const userSchema = new mongoose.Schema({
       ],
       unique: true
    },
+   number: {
+      type: String,
+      maxLength: [11, 'must not be more than 11 numbers'],
+      minLength: [9, 'must not be less than 9 numbers'],
+      required: [true, 'number is require'],
+      default: '08000000000'
+   },
+   location: {
+      type: String,
+      minLength: [3, 'character for location most not be less than 3'],
+      required: [true, 'location is required'],
+      default: 'lagos'
+   }
 })
 userSchema.pre('save', async function () {
    const salt = await bcrypt.genSalt(10)

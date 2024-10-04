@@ -11,12 +11,6 @@ const authenticateMiddleware = async (req, res, next) => {
    try {
       const payLoad = jwt.verify(token, process.env.JWT_SECRET)
       const { userId, name } = payLoad
-      // this approach
-      // const user = await User.findById(userId).select('-password')
-      // req.user = user
-
-      // or this approach
-
       req.user = { userId, name }
       next()
    } catch (error) {
