@@ -26,7 +26,7 @@ const login = async (req, res) => {
       throw new UnAuthenticatedError('Invalid cridentials: incorrect password')
    }
    const token = user.createJWT()
-   res.status(StatusCodes.OK).json({ user: { name: user.name }, token })
+   res.status(StatusCodes.OK).json({ user: { name: user.name, id: user._id }, token })
 }
 
 const getUser = async (req, res) => {
