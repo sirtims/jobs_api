@@ -21,7 +21,7 @@ const getAllJobs = async (req, res) => {
    let result = Job.find(queryObject)
    if (sort) {
       const sortedBy = sort.split(',').join(' ')
-      result = result.sort(sortedBy)
+      result = result.sort(sortedBy || -sortedBy)
    }
    else {
       result = result.sort('createdAt')
